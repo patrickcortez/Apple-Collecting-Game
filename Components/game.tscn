@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://6re6wrrsbepm"]
+
+[ext_resource type="PackedScene" uid="uid://dx5msyaorjg7i" path="res://Components/World.tscn" id="1_8lesu"]
+[ext_resource type="Script" uid="uid://cc2sp2qrbigq6" path="res://Components/GameManager.cs" id="1_d8g6k"]
+[ext_resource type="PackedScene" uid="uid://bt6l4n047o5ow" path="res://Components/player.tscn" id="2_mpd4l"]
+[ext_resource type="PackedScene" uid="uid://yiautytko5ch" path="res://apple.tscn" id="3_mpd4l"]
+
+[node name="Game" type="Node2D" unique_id=417208317]
+script = ExtResource("1_d8g6k")
+
+[node name="World" parent="." unique_id=1192744396 instance=ExtResource("1_8lesu")]
+
+[node name="Player" parent="World" unique_id=74380540 instance=ExtResource("2_mpd4l")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(44, 110)
+
+[node name="Apple" parent="." unique_id=419878718 instance=ExtResource("3_mpd4l")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(49, 19)
+
+[node name="Apple2" parent="." unique_id=1681011457 instance=ExtResource("3_mpd4l")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-49, 30)
+
+[node name="Apple3" parent="." unique_id=253077386 instance=ExtResource("3_mpd4l")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-111, 57)
+
+[node name="Apple4" parent="." unique_id=1668568464 instance=ExtResource("3_mpd4l")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(80, 61)

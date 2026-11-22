@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bt6l4n047o5ow"]
+
+[ext_resource type="Script" uid="uid://bj1tkfoml4ngr" path="res://Components/Player.cs" id="1_6d8je"]
+[ext_resource type="Texture2D" uid="uid://c3dg7paq0phn8" path="res://Assets/Seymor-Left.png" id="2_4qqls"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojnr2"]
+size = Vector2(8, 16)
+
+[sub_resource type="FontFile" id="FontFile_6d8je"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_6d8je"]
+font = SubResource("FontFile_6d8je")
+font_size = 10
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+
+[node name="Player" type="Node2D" unique_id=74380540]
+
+[node name="Body" type="CharacterBody2D" parent="." unique_id=1913073028]
+script = ExtResource("1_6d8je")
+MovementSpeed = 50.0
+
+[node name="Collision" type="CollisionShape2D" parent="Body" unique_id=1053158261]
+shape = SubResource("RectangleShape2D_ojnr2")
+
+[node name="Sprite" type="Sprite2D" parent="Body" unique_id=1444622350]
+texture_filter = 1
+scale = Vector2(0.625, 0.53125)
+texture = ExtResource("2_4qqls")
+
+[node name="Counter" type="Label" parent="Body" unique_id=1263964482]
+texture_filter = 1
+offset_left = -135.0
+offset_top = -26.0
+offset_right = -69.0
+offset_bottom = -3.0
+label_settings = SubResource("LabelSettings_6d8je")
+
+[node name="Camera2D" type="Camera2D" parent="Body" unique_id=1686628636]
+position = Vector2(-1, 0)
+zoom = Vector2(4, 4)
+limit_left = -311
+limit_top = -34
+limit_right = 392
+limit_bottom = 286
+limit_smoothed = true
