@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://6re6wrrsbepm"]
 
 [ext_resource type="PackedScene" uid="uid://dx5msyaorjg7i" path="res://Components/World.tscn" id="1_8lesu"]
-[ext_resource type="Script" uid="uid://cc2sp2qrbigq6" path="res://Components/GameManager.cs" id="1_d8g6k"]
+[ext_resource type="Script" uid="uid://cc2sp2qrbigq6" path="res://Scripts/GameManager.cs" id="1_d8g6k"]
 [ext_resource type="PackedScene" uid="uid://bt6l4n047o5ow" path="res://Components/player.tscn" id="2_mpd4l"]
-[ext_resource type="PackedScene" uid="uid://yiautytko5ch" path="res://apple.tscn" id="3_mpd4l"]
+[ext_resource type="PackedScene" uid="uid://yiautytko5ch" path="res://Components/apple.tscn" id="3_mpd4l"]
 
 [node name="Game" type="Node2D" unique_id=417208317]
 script = ExtResource("1_d8g6k")
