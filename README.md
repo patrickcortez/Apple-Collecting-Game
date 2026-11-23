@@ -8,7 +8,7 @@ game about a guy picking-up apples around the **Emerald Forest**.
 
 ## Contributions
 
-For contributions see [CONTRIBUTION](CONTRIBUTION.md).
+For contributions see [CONTRIBUTION](Contributing.md).
 
 ---
 
@@ -19,3 +19,7 @@ The following are the tools used to create this game:
 	- Godot
 	- VS Community
 	- Aseprite
+
+## License
+
+This game is under MIT License, see [LICENSE](LICENSE) for more information.
