@@ -4,33 +4,62 @@
 [ext_resource type="Script" uid="uid://cc2sp2qrbigq6" path="res://Scripts/GameManager.cs" id="1_d8g6k"]
 [ext_resource type="PackedScene" uid="uid://bt6l4n047o5ow" path="res://Components/player.tscn" id="2_mpd4l"]
 [ext_resource type="PackedScene" uid="uid://yiautytko5ch" path="res://Components/apple.tscn" id="3_mpd4l"]
+[ext_resource type="AudioStream" uid="uid://ufj8suqlqlbj" path="res://Assets/Music/bg-music.mp3" id="5_uyuk0"]
+[ext_resource type="Script" uid="uid://dxlbfqaftfwko" path="res://Scripts/Components/StopWatch.cs" id="6_255bv"]
+[ext_resource type="FontFile" uid="uid://bw2ni15v6b7md" path="res://Assets/Font/SHPinscher-Regular.otf" id="7_f0dha"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ojnr2"]
+font = ExtResource("7_f0dha")
+font_size = 56
+font_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D" unique_id=417208317]
 script = ExtResource("1_d8g6k")
 
 [node name="World" parent="." unique_id=1192744396 instance=ExtResource("1_8lesu")]
 
-[node name="Player" parent="World" unique_id=74380540 instance=ExtResource("2_mpd4l")]
+[node name="Player" parent="World" unique_id=74380540 groups=["Player"] instance=ExtResource("2_mpd4l")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(44, 110)
 
 [node name="Apple" parent="." unique_id=419878718 instance=ExtResource("3_mpd4l")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(49, 19)
+position = Vector2(203, 111)
 
-[node name="Apple2" parent="." unique_id=1681011457 instance=ExtResource("3_mpd4l")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(-49, 30)
+[node name="Apple2" parent="." unique_id=1841589792 instance=ExtResource("3_mpd4l")]
+position = Vector2(-69, 68)
 
-[node name="Apple3" parent="." unique_id=253077386 instance=ExtResource("3_mpd4l")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(-111, 57)
+[node name="Apple3" parent="." unique_id=386118967 instance=ExtResource("3_mpd4l")]
+position = Vector2(71, 73)
 
-[node name="Apple4" parent="." unique_id=1668568464 instance=ExtResource("3_mpd4l")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(80, 61)
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1998914990]
+stream = ExtResource("5_uyuk0")
+volume_db = -10.253
+autoplay = true
+parameters/looping = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=929259638]
+
+[node name="Apple4" parent="." unique_id=909064400 instance=ExtResource("3_mpd4l")]
+position = Vector2(-5, 131)
+
+[node name="Apple5" parent="." unique_id=1333687619 instance=ExtResource("3_mpd4l")]
+position = Vector2(23, 178)
+
+[node name="Apple6" parent="." unique_id=1457989093 instance=ExtResource("3_mpd4l")]
+position = Vector2(213, 168)
+
+[node name="StopWatch" type="Node" parent="." unique_id=223109254 groups=["clocks"]]
+script = ExtResource("6_255bv")
+IsRunning = true
+metadata/_custom_type_script = "uid://dxlbfqaftfwko"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=303334958]
+
+[node name="lbl_clock" type="Label" parent="CanvasLayer" unique_id=902276723]
+offset_left = 487.0
+offset_top = 3.0
+offset_right = 532.0
+offset_bottom = 29.0
+text = "Time"
+label_settings = SubResource("LabelSettings_ojnr2")

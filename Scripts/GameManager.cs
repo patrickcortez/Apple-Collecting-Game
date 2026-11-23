@@ -9,28 +9,60 @@ public partial class GameManager : Node2D
 	// Called when the node enters the scene tree for the first time.
 	[Export]
 	public int Apples;
-	private Node Player;
+	private Node2D PossiblePlayer;
+	private AudioStreamPlayer Music;
+
+	private AudioStreamMP3 BG = GD.Load<AudioStreamMP3>("res://Assets/Music/bg-music.mp3");
+
+	private StopWatch stopwatch;
+	private Label stoplabel;
+
+	public void PlayBG()
+	{
+		Music.Stop();
+		Music.Stream = BG;
+		Music.Play();
+	}
 
 	public override void _Ready()
 	{
 		Apples = GetTree().GetNodesInGroup("Apples").Count;
+		Music = GetNode<AudioStreamPlayer>("SFXPlayer");
+		stopwatch = GetNode<StopWatch>("StopWatch");
+		stoplabel = GetNode<Label>("CanvasLayer/lbl_clock");
 
 		if(Apples is 0)
 		{
 			GD.PrintErr("Apples is Empty!");
 		}
 
-		Player = GetNode<Player>("World/Player");
+		stopwatch.SecondsPassed += (seconds) =>
+		{
+			stoplabel.Text = $"{seconds}";
+		};
 
-		Label Label = Player.GetNode<Label>("Body/Counter");
-		GD.Print(String.Format("Apple Amount: {0}",Apples));
-		Label.Text = $"Apple Amount: {Apples}";
+		PossiblePlayer = GetNode<Node2D>("World/Player");
 
-		Player.GetNode<Label>("Body / Counter").Text = Label.Text;
+		Player player = (PossiblePlayer.GetNode<CharacterBody2D>("Body") is Player play) ? play : throw new NullReferenceException("Player is not FOund!");
+
+		player.PickedUpApple += () =>
+		{
+			try
+			{
+				GD.Print($"{player.DisplayedName} picked up an Apple!");
+				Music.Stream = GD.Load<AudioStream>("res://Assets/Music/pickup.mp3");
+				Music.Play();
+			}catch(Exception ex)
+			{
+				GD.PrintErr(ex);
+			}
+		};
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+
 	}
 }

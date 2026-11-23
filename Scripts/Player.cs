@@ -1,27 +1,30 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 public partial class Player : CharacterBody2D
 {
 	// Called when the node enters the scene tree for the first time.
 
-	
+	[Signal]
+	public delegate void PickedUpAppleEventHandler();
 	public override void _Ready()
 	{
 		// get all apples in the scene tree
+		Score = 0;
 		Apples = GetTree().GetNodesInGroup("Apples");
 		LastKnownMouse = GlobalPosition;
 		ThisSprite = GetNode<Sprite2D>("Sprite");
-		ThisLabel = GetNode<Label>("Counter");
-		ThisLabel.Text = $"Apples: {Apples.Count}";
+		ThisLabel = GetNode<Label>("CanvasLayer/Counter");
+		ThisLabel.Text = $"Score: {Score}";
+		Score = 0;
+		ShouldStop = false;
         ListenToApples();
+
     }
 
 
-
+	private int Score = 0;
 	[Export]
 	public float MovementSpeed { get; set; } =100.0f;
 	
@@ -34,6 +37,11 @@ public partial class Player : CharacterBody2D
 	// textures
 	private Texture2D left { get; } = GD.Load<Texture2D>("res://Assets/Seymor-Left.png");
     private Texture2D right { get; } = GD.Load<Texture2D>("res://Assets/Seymor-Right.png");
+
+
+	public string DisplayedName { get; set; } = "Theodore";
+
+	
     
 	//components
 	private Sprite2D ThisSprite;
@@ -41,7 +49,7 @@ public partial class Player : CharacterBody2D
 	
 
 	[Export]
-	public float ArrivalThreshold { get; set; } = 2.5f;
+	public float ArrivalThreshold { get; set; } = 1f;
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -56,6 +64,13 @@ public partial class Player : CharacterBody2D
             ThisSprite.Texture = right;
         }
     }
+
+	private void UpdateScoreLabel()
+	{
+        ThisLabel.Text = $"Score: {Score}";
+    }
+
+	private bool ShouldStop;
 
 	private void ListenToApples()
 	{
@@ -74,6 +89,16 @@ public partial class Player : CharacterBody2D
 					GD.Print("Player Cursor changed to Arrow");
                     Input.SetDefaultCursorShape(Input.CursorShape.Arrow);
                 };
+
+				Apple.AppleClicked += () =>
+				{
+                    EmitSignal(SignalName.PickedUpApple);
+                    Score++;
+
+					Input.SetDefaultCursorShape(Input.CursorShape.Arrow);
+					ShouldStop = true;
+
+				};
 			}
 			else
 			{
@@ -85,24 +110,40 @@ public partial class Player : CharacterBody2D
 	public override void _Process(double delta)
 	{
 
+		UpdateScoreLabel();
 
+        if (ShouldStop)
+        {
+			Velocity = Vector2.Zero;
+            LastKnownMouse = GlobalPosition;
 
-		if (Input.IsMouseButtonPressed(MouseButton.Left))
+			if (!Input.IsMouseButtonPressed(MouseButton.Left))
+			{
+				ShouldStop = false;
+			}
+
+            return;
+        }
+
+        if (Input.IsMouseButtonPressed(MouseButton.Left) && !ShouldStop)
 		{
 
-			
 
-			Vector2 MousePosition = GetGlobalMousePosition();
+
+            Vector2 MousePosition = GetGlobalMousePosition();
 			LastKnownMouse = MousePosition;
 			float distanceToPos = GlobalPosition.DistanceTo(MousePosition);
+
 			GD.Print($"Distance of player to target: {distanceToPos}");
 
 			if (distanceToPos > ArrivalThreshold)
 			{
 				Vector2 Direction = GlobalPosition.DirectionTo(MousePosition);
 				LastKnownDirection = Direction;
+                UpdateSprite();
 
-				Velocity = Direction * MovementSpeed;
+
+                Velocity = Direction * MovementSpeed;
 
 			
 			}
@@ -133,5 +174,8 @@ public partial class Player : CharacterBody2D
 		//}
 
         MoveAndSlide();
+
+
+
     }
 }

@@ -8,14 +8,14 @@ size = Vector2(6, 6)
 
 [node name="Apple" type="Node2D" unique_id=419878718]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1676677759 groups=["Apples"]]
-input_pickable = true
+[node name="Area" type="Area2D" parent="." unique_id=850730797 groups=["Apples"]]
+collision_layer = 2
 script = ExtResource("1_n78qv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1868290504]
-shape = SubResource("RectangleShape2D_ojnr2")
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=609180657]
+[node name="Sprite2D" type="Sprite2D" parent="Area" unique_id=609180657]
 texture_filter = 1
 scale = Vector2(0.53125, 0.53125)
 texture = ExtResource("2_whgpf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area" unique_id=1868290504]
+shape = SubResource("RectangleShape2D_ojnr2")

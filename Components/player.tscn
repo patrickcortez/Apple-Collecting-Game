@@ -2,36 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bj1tkfoml4ngr" path="res://Scripts/Player.cs" id="1_6d8je"]
 [ext_resource type="Texture2D" uid="uid://c3dg7paq0phn8" path="res://Assets/Seymor-Left.png" id="2_4qqls"]
+[ext_resource type="FontFile" uid="uid://bw2ni15v6b7md" path="res://Assets/Font/SHPinscher-Regular.otf" id="3_4qqls"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojnr2"]
 size = Vector2(8, 16)
 
-[sub_resource type="FontFile" id="FontFile_6d8je"]
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/10/0/ascent = 0.0
-cache/0/10/0/descent = 0.0
-cache/0/10/0/underline_position = 0.0
-cache/0/10/0/underline_thickness = 0.0
-cache/0/10/0/scale = 1.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_6d8je"]
-font = SubResource("FontFile_6d8je")
-font_size = 10
+[sub_resource type="LabelSettings" id="LabelSettings_n7csw"]
+font = ExtResource("3_4qqls")
+font_size = 70
 font_color = Color(0, 0, 0, 1)
-outline_size = 1
+shadow_size = 0
 
 [node name="Player" type="Node2D" unique_id=74380540]
 
@@ -47,14 +27,6 @@ texture_filter = 1
 scale = Vector2(0.625, 0.53125)
 texture = ExtResource("2_4qqls")
 
-[node name="Counter" type="Label" parent="Body" unique_id=1263964482]
-texture_filter = 1
-offset_left = -135.0
-offset_top = -26.0
-offset_right = -69.0
-offset_bottom = -3.0
-label_settings = SubResource("LabelSettings_6d8je")
-
 [node name="Camera2D" type="Camera2D" parent="Body" unique_id=1686628636]
 position = Vector2(-1, 0)
 zoom = Vector2(4, 4)
@@ -63,3 +35,22 @@ limit_top = -34
 limit_right = 392
 limit_bottom = 286
 limit_smoothed = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Body" unique_id=895603690]
+
+[node name="Counter" type="Label" parent="Body/CanvasLayer" unique_id=1263964482]
+z_index = 5
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.827
+anchor_right = 0.119
+anchor_bottom = 0.95800006
+offset_left = -0.10400009
+offset_top = 0.104003906
+offset_right = -0.08799744
+offset_bottom = 0.21594238
+theme_override_font_sizes/font_size = 80
+text = "ssss"
+label_settings = SubResource("LabelSettings_n7csw")
+text_direction = 3
