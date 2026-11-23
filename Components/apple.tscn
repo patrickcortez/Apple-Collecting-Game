@@ -1,7 +1,50 @@
 [gd_scene format=3 uid="uid://yiautytko5ch"]
 
 [ext_resource type="Script" uid="uid://b2xrsglbg03pu" path="res://Scripts/AppleBehavior.cs" id="1_n78qv"]
-[ext_resource type="Texture2D" uid="uid://bceqfqhb3gqv2" path="res://Assets/Apple.png" id="2_whgpf"]
+[ext_resource type="Texture2D" uid="uid://b1ll0wmuwmdm1" path="res://Assets/Apple-Animated.png" id="2_jdvbf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjq55"]
+atlas = ExtResource("2_jdvbf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00cv1"]
+atlas = ExtResource("2_jdvbf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp8hv"]
+atlas = ExtResource("2_jdvbf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjdtq"]
+atlas = ExtResource("2_jdvbf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfge8"]
+atlas = ExtResource("2_jdvbf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ojnr2"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_vjq55")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_00cv1")
+}, {
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_cp8hv")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_rjdtq")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_xfge8")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojnr2"]
 size = Vector2(6, 6)
@@ -12,10 +55,12 @@ size = Vector2(6, 6)
 collision_layer = 2
 script = ExtResource("1_n78qv")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area" unique_id=609180657]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Area" unique_id=769527240]
 texture_filter = 1
 scale = Vector2(0.53125, 0.53125)
-texture = ExtResource("2_whgpf")
+sprite_frames = SubResource("SpriteFrames_ojnr2")
+autoplay = "default"
+frame_progress = 0.33632827
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area" unique_id=1868290504]
 shape = SubResource("RectangleShape2D_ojnr2")

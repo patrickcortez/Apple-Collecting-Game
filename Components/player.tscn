@@ -30,10 +30,10 @@ texture = ExtResource("2_4qqls")
 [node name="Camera2D" type="Camera2D" parent="Body" unique_id=1686628636]
 position = Vector2(-1, 0)
 zoom = Vector2(4, 4)
-limit_left = -311
-limit_top = -34
-limit_right = 392
-limit_bottom = 286
+limit_left = -704
+limit_top = -928
+limit_right = 1760
+limit_bottom = 928
 limit_smoothed = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Body" unique_id=895603690]
